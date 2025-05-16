@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# AgroConnect Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o projeto frontend da aplicação **AgroConnect**, desenvolvido em **React + TypeScript**, com integração à API .NET 9. A aplicação é voltada para o gerenciamento de usuários, produtores rurais, fazendas, culturas e associações entre culturas e fazendas.
 
-Currently, two official plugins are available:
+## 🔧 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- TypeScript
+- Vite
+- Recharts (para gráficos)
+- React Router DOM
+- Estilização inline (sem uso de Tailwind ou CSS externo)
 
-## Expanding the ESLint configuration
+## 📁 Estrutura do Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```
+src/
+├── components/           # Componentes reutilizáveis (Tabela, Menu, etc.)
+├── pages/                # Páginas principais do sistema
+├── services/             # Serviços de consumo da API (axios)
+├── App.tsx               # Configuração de rotas
+└── main.tsx              # Ponto de entrada da aplicação
+```
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
+## ✅ Funcionalidades
+
+- Autenticação (login, registro, refresh/revogar token)
+- Dashboard com estatísticas e gráficos
+- Cadastro e listagem de:
+  - Usuários
+  - Produtores Rurais
+  - Fazendas (com busca de CEP)
+  - Culturas (com enum de categorias e exigência climática)
+  - Associações de Culturas com Fazendas
+
+## 🚀 Como Executar
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/agroconnect-frontend.git
+cd agroconnect-frontend
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Execute o projeto:
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível em `http://localhost:5173`.
+
+## ⚙️ Configuração
+
+Configure a URL base da API no `axios` (geralmente em `services/api.ts`):
+
+```ts
+const api = axios.create({
+  baseURL: 'https://sua-api.com/api',
 })
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📄 Licença
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Este projeto está licenciado sob a Licença MIT.
